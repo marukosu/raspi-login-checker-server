@@ -1,4 +1,5 @@
 from server import db
+from datetime import datetime
 
 class Card(db.Model):
     __tablename__ = 'cards'
@@ -6,6 +7,8 @@ class Card(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     idm = db.Column(db.String(16), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
 
     def __init__(self, idm):
         self.idm = idm
