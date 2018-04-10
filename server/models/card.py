@@ -6,3 +6,9 @@ class Card(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     idm = db.Column(db.String(16), nullable=False)
+
+    def __init__(self, idm):
+        self.idm = idm
+
+    def __repr__(self):
+        return f'<Card user_id:{self.user_id} idm:{self.idm}>'
