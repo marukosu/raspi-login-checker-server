@@ -6,9 +6,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), index=True, nullable=False, unique=True)
 
-    def __init__(self, username, email):
+    def __init__(self, username):
         self.username = username
-        self.email = email
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
