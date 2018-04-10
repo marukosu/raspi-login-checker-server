@@ -7,3 +7,5 @@ app.register_blueprint(blueprint)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/raspi-login-checker?charset=utf8'
 db = SQLAlchemy(app)
+
+from .models import *
