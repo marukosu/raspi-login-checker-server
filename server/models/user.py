@@ -7,6 +7,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), index=True, nullable=False, unique=True)
     cards = db.relationship('Card', backref='user', lazy=True)
+    logins = db.relationship('Login', backref='user', lazy=True)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
 
