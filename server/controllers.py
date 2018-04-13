@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, make_response
 
 app = Blueprint(
     'api',
@@ -9,3 +9,7 @@ app = Blueprint(
 @app.route('/index')
 def index():
     return jsonify({'message': 'Hello world'})
+
+@app.app_errorhandler(404)
+def handle_404(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
