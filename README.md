@@ -1,6 +1,6 @@
 # raspi-login-checker-server
 
-## 開発
+## 実行手順(開発環境)
 
 ### インストール
 
@@ -9,7 +9,7 @@ $ pipenv install
 
 $ mysql -u [username] -p [password] -e 'create database raspi_login_checker;'
 
-$ export FLASK_CONFIG_FILE=`pwd`/config/[利用する環境のconfig]
+$ export FLASK_CONFIG_FILE=`pwd`/config/development.py
 
 $ pipenv run python init_database.py
 ```
@@ -19,7 +19,6 @@ $ pipenv run python init_database.py
 ```
 $ export FLASK_APP=run.py
 
-# DEBUGを有効にする場合
 $ export FLASK_DEBUG=1
 
 $ pipenv run flask run
