@@ -7,6 +7,10 @@
 ```
 $ pipenv install 
 
+$ mysql -u [username] -p [password] -e 'create database raspi_login_checker;'
+
+$ export FLASK_CONFIG_FILE=`pwd`/config/[利用する環境のconfig]
+
 $ pipenv run python init_database.py
 ```
 
@@ -14,9 +18,6 @@ $ pipenv run python init_database.py
 
 ```
 $ export FLASK_APP=run.py
-
-# 開発環境のconfigを使用する場合
-$ export FLASK_CONFIG_FILE=`pwd`/config/development.py
 
 # DEBUGを有効にする場合
 $ export FLASK_DEBUG=1
