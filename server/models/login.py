@@ -11,6 +11,13 @@ class Login(db.Model):
 
     def __init__(self, created_at):
         self.created_at = created_at
-    
+
     def __repr__(self):
-        return f'<Login user_id:{self.user_id} created_at:{self.created_at}>'
+        return f'<Login user_id:{self.user_id} created_at:{self.created_at}>' 
+
+    @classmethod
+    def create(cls, created_at):
+        login = Login(created_at)
+        db.session.add(login)
+        db.session.commit()
+        return login
