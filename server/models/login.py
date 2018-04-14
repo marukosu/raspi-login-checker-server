@@ -1,5 +1,6 @@
 from server import db
 from datetime import datetime
+from .card import Card
 
 class Login(db.Model):
     __tablename__ = 'logins'
@@ -11,6 +12,20 @@ class Login(db.Model):
 
     def __init__(self, created_at):
         self.created_at = created_at
-    
+
     def __repr__(self):
-        return f'<Login user_id:{self.user_id} created_at:{self.created_at}>'
+        return f'<Login user_id:{self.user_id} created_at:{self.created_at}>' 
+
+    def relate_user_by_idm(self, idm):
+        card = Card.query.filter_by(idm=idm).first()
+        if card.user is None:
+            return
+        card.user.logins.append(self)
+        db.session.commit()
+
+    @classmethod
+    def create(cls, created_at):
+        login = Login(created_at)
+        db.session.add(login)
+        db.session.commit()
+        return login
