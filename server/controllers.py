@@ -1,5 +1,7 @@
-from flask import Blueprint, jsonify, request, make_response, abort
 from datetime import datetime
+
+from flask import Blueprint, jsonify, request, make_response, abort
+
 from .models import Login
 
 app = Blueprint(
@@ -7,6 +9,7 @@ app = Blueprint(
     __name__,
     url_prefix='/api'
 )
+
 
 @app.route('/logins', methods=['POST'])
 def register_login():
@@ -18,9 +21,11 @@ def register_login():
 
     return jsonify({'message': 'ok'})
 
+
 @app.app_errorhandler(400)
 def handle_400(error):
     return make_response(jsonify({'error': 'Bad Request'}), 400)
+
 
 @app.app_errorhandler(404)
 def handle_404(error):

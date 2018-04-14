@@ -1,6 +1,8 @@
-from server import db
 from datetime import datetime
+
+from server import db
 from .card import Card
+
 
 class Login(db.Model):
     __tablename__ = 'logins'
@@ -14,7 +16,7 @@ class Login(db.Model):
         self.created_at = created_at
 
     def __repr__(self):
-        return f'<Login user_id:{self.user_id} created_at:{self.created_at}>' 
+        return f'<Login user_id:{self.user_id} created_at:{self.created_at}>'
 
     def relate_user_by_idm(self, idm):
         card = Card.query.filter_by(idm=idm).first()
