@@ -20,7 +20,7 @@ class Login(db.Model):
 
     def relate_user_by_idm(self, idm):
         card = Card.query.filter_by(idm=idm).first()
-        if card.user is None:
+        if card is None or card.user is None:
             return
         card.user.logins.append(self)
         db.session.commit()
