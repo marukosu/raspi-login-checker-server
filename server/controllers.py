@@ -31,6 +31,15 @@ def get_user(user_id):
     return jsonify(user.to_json())
 
 
+@app.route('/users/', methods=['GET'])
+def get_users():
+    users = User.query.all()
+    if users is None:
+        abort(404)
+
+    return jsonify({'users': [user.to_json() for user in users]})
+
+
 @app.route('/users/', methods=['POST'])
 def create_user():
     if not request.json or 'username' not in request.json:
