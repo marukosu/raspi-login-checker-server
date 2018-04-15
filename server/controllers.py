@@ -2,7 +2,7 @@ from datetime import datetime
 
 from flask import Blueprint, jsonify, request, make_response, abort
 
-from .models import Login
+from .models import Login, User
 
 app = Blueprint(
     'api',
@@ -20,6 +20,15 @@ def register_login():
     login.relate_user_by_idm(request.json['idm'])
 
     return jsonify({'message': 'ok'})
+
+
+@app.route('/users/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    if user is None:
+        abort(404)
+
+    return jsonify(user.to_json())
 
 
 @app.app_errorhandler(400)
