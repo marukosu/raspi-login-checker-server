@@ -10,8 +10,8 @@ class User(db.Model):
     username = db.Column(db.String(80), index=True, nullable=False, unique=True)
     cards = db.relationship('Card', backref='user', lazy=True)
     logins = db.relationship('Login', backref='user', lazy=True)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
-    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now, onupdate=datetime.now)
 
     def __init__(self, username):
         self.username = username
