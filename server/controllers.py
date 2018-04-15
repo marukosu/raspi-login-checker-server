@@ -31,6 +31,15 @@ def get_user(user_id):
     return jsonify(user.to_json())
 
 
+@app.route('/users/', methods=['POST'])
+def create_user():
+    if not request.json or 'username' not in request.json:
+        abort(400)
+    User.create(request.json['username'])
+
+    return jsonify({'message': 'ok'})
+
+
 @app.app_errorhandler(400)
 def handle_400(error):
     return make_response(jsonify({'error': 'Bad Request'}), 400)

@@ -18,3 +18,10 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<User {self.username}>'
+
+    @classmethod
+    def create(cls, username):
+        user = User(username)
+        db.session.add(user)
+        db.session.commit()
+        return user
