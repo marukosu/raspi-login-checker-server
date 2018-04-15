@@ -54,6 +54,17 @@ def update_user(user_id):
     return jsonify({'message': 'ok'})
 
 
+@app.route('/users/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    if user is None:
+        abort(404)
+
+    user.delete()
+
+    return jsonify({'message': 'ok'})
+
+
 @app.app_errorhandler(400)
 def handle_400(error):
     return make_response(jsonify({'error': 'Bad Request'}), 400)
