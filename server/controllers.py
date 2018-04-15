@@ -40,6 +40,20 @@ def create_user():
     return jsonify({'message': 'ok'})
 
 
+@app.route('/users/<int:user_id>', methods=['PATCH'])
+def update_user(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    if user is None:
+        abort(404)
+
+    if not request.json or 'username' not in request.json:
+        abort(400)
+
+    user.update(request.json['username'])
+
+    return jsonify({'message': 'ok'})
+
+
 @app.app_errorhandler(400)
 def handle_400(error):
     return make_response(jsonify({'error': 'Bad Request'}), 400)

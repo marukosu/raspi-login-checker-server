@@ -19,6 +19,10 @@ class User(db.Model):
     def __repr__(self):
         return f'<User {self.username}>'
 
+    def update(self, username):
+        self.username = username
+        db.session.commit()
+
     @classmethod
     def create(cls, username):
         user = User(username)
