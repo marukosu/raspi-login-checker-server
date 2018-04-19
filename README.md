@@ -11,7 +11,9 @@ $ mysql -u [username] -p [password] -e 'create database raspi_login_checker;'
 
 $ export FLASK_CONFIG_FILE=`pwd`/config/development.py
 
-$ pipenv run python init_database.py
+$ export FLASK_APP=run.py
+
+$ pipenv run flask db upgrade
 ```
 
 ### 実行
